@@ -401,7 +401,7 @@ function printData(mall_data, mall_langs) {
 
             html += `<tr>
                      <td>
-                        <input type="text" name="page_name[]" class="form-control page" list="datalistOptions" placeholder="Type to search..." data-pageurl='${item.page_url}' value="${item.page_name}">
+                        <input type="text" name="page_name[]" class="form-control page" list="datalistOptions" placeholder="Type to search..." data-pageurl='${item.page_url}' value='${item.page_name}">
                      </td>
                      <td>
                         <div class="input-group flex-nowrap">
