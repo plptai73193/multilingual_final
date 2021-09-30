@@ -393,19 +393,19 @@ function printData(mall_data, mall_langs) {
          if (mall_langs != "") {
             $(mall_langs).each(function (idx, itm) {
                if (itm.lang_code == item.language) {
-                  mall_langs_html += `<option selected="selected" value="${itm.lang_code}">${itm.shop_name}</option>`;
+                  mall_langs_html += `<option selected="selected" value='${itm.lang_code}'>${itm.shop_name}</option>`;
                } else {
-                  mall_langs_html += `<option value="${itm.lang_code}">${itm.shop_name}</option>`;
+                  mall_langs_html += `<option value='${itm.lang_code}'>${itm.shop_name}</option>`;
                }
             });
 
             html += `<tr>
                      <td>
-                        <input type="text" name="page_name[]" class="form-control page" list="datalistOptions" placeholder="Type to search..." data-pageurl="${item.page_url}" value="${item.page_name}">
+                        <input type="text" name="page_name[]" class="form-control page" list="datalistOptions" placeholder="Type to search..." data-pageurl='${item.page_url}' value="${item.page_name}">
                      </td>
                      <td>
                         <div class="input-group flex-nowrap">
-                           <input type="text" class="form-control selector" placeholder="Selector" aria-describedby="addon-wrapping" name="selector[]" value="${item.selector}">
+                           <input type="text" class="form-control selector" placeholder="Selector" aria-describedby="addon-wrapping" name="selector[]" value='${item.selector}'>
                         </div>
                      </td>
                      <td>
@@ -415,7 +415,7 @@ function printData(mall_data, mall_langs) {
                      </td>
                      <td>
                         <div class="input-group flex-nowrap">
-                           <input type="text" class="form-control input_text" placeholder="Translate Text" aria-describedby="addon-wrapping" name="input_text[]" value="${item.input_text}">
+                           <input type="text" class="form-control input_text" placeholder="Translate Text" aria-describedby="addon-wrapping" name="input_text[]" value='${item.input_text}'>
                         </div>
                      </td>
                      <td>
@@ -427,7 +427,7 @@ function printData(mall_data, mall_langs) {
                         <span class="delete_icon" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Click to remove" aria-label="Click to remove">
                            <i class="far fa-trash-alt"></i>
                            </span>
-                           <input type="hidden" name="row_id[]" class="row_id" value="${item.row_id}">
+                           <input type="hidden" name="row_id[]" class="row_id" value='${item.row_id}'>
                      </td>
                   </tr>`;
          }
