@@ -218,7 +218,7 @@ $('body')
             }
          });
       } else if ($(this).hasClass('previous')) {
-         let url = `https://local.testsdk.com/api/v1/mall/translatetable?page=${current_page - 1}&cafe24_mall_id=${cafe_mall_id}`;
+         let url = `/api/v1/mall/translatetable?page=${current_page - 1}&cafe24_mall_id=${cafe_mall_id}`;
          $.ajax({
             type: "GET",
             url: url,
@@ -228,7 +228,7 @@ $('body')
             }
          });
       } else if ($(this).hasClass('next')) {
-         let url = `https://local.testsdk.com/api/v1/mall/translatetable?page=${current_page + 1}&cafe24_mall_id=${cafe_mall_id}`;
+         let url = `/api/v1/mall/translatetable?page=${current_page + 1}&cafe24_mall_id=${cafe_mall_id}`;
          $.ajax({
             type: "GET",
             url: url,
@@ -239,7 +239,7 @@ $('body')
          });
       } else {
          let page_number = $(this).attr('href');
-         let url = `https://local.testsdk.com/api/v1/mall/translatetable?page=${page_number}&cafe24_mall_id=${cafe_mall_id}`;
+         let url = `/api/v1/mall/translatetable?page=${page_number}&cafe24_mall_id=${cafe_mall_id}`;
          $.ajax({
             type: "GET",
             url: url,

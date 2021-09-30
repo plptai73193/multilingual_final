@@ -218,7 +218,7 @@ class TextController extends Controller{
         $texts = DB::table('translated_texts')->where([
                            'cafe24_mall_id' => $cafe24_mall_id,
                            'is_deleted' => '0',
-                        ])->paginate(5)->toArray();
+                        ])->paginate(20)->toArray();
         if(!empty($texts)){
 
             $text_datas = $texts['data'];
