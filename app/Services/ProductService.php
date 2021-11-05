@@ -47,11 +47,18 @@ class ProductService {
       if (!empty($res_data)) {
          $product = $res_data->product;
          $result_data = [
-            "product_no" => $product->product_no,
             "shop_no" => $shop_no,
+            "product_no" => $product->product_no,
+            "product_name" => $product->product_name, 
+            "simple_description" => $product->simple_description, 
             "description" => $product->description,
             "mobile_description" => $product->mobile_description,
-            "translated_description" => $product->translated_description
+            "translated_description" => $product->translated_description,
+            "product_tag" => $product->product_tag,
+            "internal_product_name" => $product->internal_product_name,
+            "model_name" => $product->model_name,
+            "supply_price" => $product->supply_price,
+            "translated_additional_description" => $product->translated_additional_description,
          ];
          $result['success'] = true;
          $result['data'] = $result_data;
