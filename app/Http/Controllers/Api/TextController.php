@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\Mall;
+use App\Services\ProductService;
 
 
 class TextController extends Controller{
@@ -345,4 +346,17 @@ class TextController extends Controller{
         return $result;
     }
 
+
+
+
+    public function productdetail(Request $request){
+        $params = [
+            "cafe_mall_id" => $request->cafe_mall_id,
+            "product_id" => $request->product_id,
+            "shop_no" => $request->shop_no,
+        ];
+        $product_service = new ProductService();
+        $api_result = $product_service->getProductDetail($params);
+        return $api_result;
+    }
 }

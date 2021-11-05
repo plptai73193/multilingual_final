@@ -36,5 +36,7 @@ Route::middleware(Cafe24Auth::class)->prefix('v1')->namespace("Api")->group(func
         Route::get('translatetable', 'TextController@getAppTable')->name('mall.table');
         //Endpoint: api/v1/mall/search
         Route::get('search', 'TextController@search')->name('mall.search');
+        //Endpoint: api/v1/mall/productdetail
+        Route::get('productdetail', 'TextController@productdetail')->name('mall.productdetail');
     });
 });
