@@ -7,6 +7,13 @@ use App\Facades\Cafe24\Cafe24;
 
 class ProductService {
 
+
+   public function __construct(){
+      $this->cafe_24_token = Cafe24::getCafe24Token();
+      $this->access_token = $this->cafe_24_token['access_token'];
+   }
+
+
    /**
      * Get Product Detail
      *
@@ -65,6 +72,65 @@ class ProductService {
          $result['msg'] = "Success";
       } else {
          $result['msg'] = $api_res["msg"];
+      }
+      return $result;
+   }
+
+
+
+   
+   /**
+    * getProductList
+    *
+    * @param  array $params
+    * @return $result
+    */
+   public function getProductList($params) {
+      $result = [
+         "success" => false,
+         "data" => [],
+         "msg" => "",
+      ];
+
+      //Validate params
+      foreach ($params as $key => $value) {
+         if (empty($value)) {
+            $result['msg'] = "{$key} is mandatory";
+            return $result;
+         }
+      }
+
+      $cafe_mall_id = $params['cafe_mall_id'];
+      $products = $params['products'];
+      $shop_no = $params['shop_no'];
+      $endpoint = "products";
+      $cf_params = [
+         "shop_no" => $shop_no,
+         "product_no" => $products,
+         "display" => "T"
+      ];
+      $access_token = $this->access_token; 
+      $api_res = Cafe24Api::get($cafe_mall_id, $access_token, $endpoint, $cf_params);
+      if($api_res['success'] == true){
+         $result['success'] = true;
+         $res_data = $api_res['data'];
+         $products = $res_data->products;
+         if (!empty($products)) {
+            foreach ($products as $product) {
+               $result_data["products"][] = [
+                  "shop_no" => $shop_no,
+                  "product_no" => $product->product_no,
+                  "product_code" => $product->product_code,
+                  "list_image" => $product->list_image,
+                  "product_name" => $product->product_name,
+                  "price" => $product->price,
+               ];
+            }
+            $result['data'] = $result_data;
+            $result['msg'] = "Success";
+         } else {
+            $result['msg'] = "No data found!";
+         }
       }
       return $result;
    }

@@ -13,7 +13,6 @@ use App\Services\ProductService;
 class TextController extends Controller{
 
 
-
     public function index(Request $request){
         $uuids = $request->row_id;
         $cafe24_mall_id = $request->cafe24_mall_id;
@@ -347,9 +346,14 @@ class TextController extends Controller{
     }
 
 
-
-
-    public function productdetail(Request $request){
+ 
+    /**
+     * Get Product Detail
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function getProductDetail(Request $request){
         $params = [
             "cafe_mall_id" => $request->cafe_mall_id,
             "product_id" => $request->product_id,
@@ -359,4 +363,24 @@ class TextController extends Controller{
         $api_result = $product_service->getProductDetail($params);
         return $api_result;
     }
+
+    
+    /**
+     * Get Product Detail
+     *
+     * @param  mixed $request
+     * @return $result
+     */
+    public function getProductList(Request $request){
+        $params = [
+            "cafe_mall_id" => $request->cafe_mall_id,
+            "products" => $request->products,
+            "shop_no" => $request->shop_no,
+        ];
+        $product_service = new ProductService();
+        $api_result = $product_service->getProductList($params);
+        return $api_result;
+    }
+
+    
 }
