@@ -374,7 +374,7 @@ class TextController extends Controller{
     public function getProductList(Request $request){
         $params = [
             "cafe_mall_id" => $request->cafe_mall_id,
-            "products" => $request->products,
+            "product_no" => $request->product_no,
             "shop_no" => $request->shop_no,
         ];
         $product_service = new ProductService();

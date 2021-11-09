@@ -101,12 +101,12 @@ class ProductService {
       }
 
       $cafe_mall_id = $params['cafe_mall_id'];
-      $products = $params['products'];
+      $product_no = $params['product_no'];
       $shop_no = $params['shop_no'];
       $endpoint = "products";
       $cf_params = [
          "shop_no" => $shop_no,
-         "product_no" => $products,
+         "product_no" => $product_no,
          "display" => "T"
       ];
       $access_token = $this->access_token; 
