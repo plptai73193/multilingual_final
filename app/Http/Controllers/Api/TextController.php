@@ -13,6 +13,7 @@ use App\Services\ProductService;
 class TextController extends Controller{
 
 
+
     public function index(Request $request){
         $uuids = $request->row_id;
         $cafe24_mall_id = $request->cafe24_mall_id;
@@ -384,4 +385,3 @@ class TextController extends Controller{
     }
 
     
-}
