@@ -359,7 +359,6 @@ class TextController extends Controller{
             "cafe_mall_id" => $request->cafe_mall_id,
             "product_id" => $request->product_id,
             "shop_no" => $request->shop_no,
-            "limit" => 100
         ];
         $product_service = new ProductService();
         $api_result = $product_service->getProductDetail($params);
@@ -378,6 +377,7 @@ class TextController extends Controller{
             "cafe_mall_id" => $request->cafe_mall_id,
             "product_no" => $request->product_no,
             "shop_no" => $request->shop_no,
+            "limit" => 100
         ];
         $product_service = new ProductService();
         $api_result = $product_service->getProductList($params);
