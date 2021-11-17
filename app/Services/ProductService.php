@@ -66,6 +66,6 @@ class ProductService {
       } else {
          $result['msg'] = $api_res["msg"];
       }
-      return $result;
+      return $api_res;
    }
 }
