@@ -383,5 +383,5 @@ class TextController extends Controller{
         $api_result = $product_service->getProductList($params);
         return $api_result;
     }
-
+}
     
