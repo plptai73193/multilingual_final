@@ -107,7 +107,8 @@ class ProductService {
       $cf_params = [
          "shop_no" => $shop_no,
          "product_no" => $product_no,
-         "display" => "T"
+         "display" => "T",
+         "limit" => 100
       ];
       $access_token = $this->access_token; 
       $api_res = Cafe24Api::get($cafe_mall_id, $access_token, $endpoint, $cf_params);
