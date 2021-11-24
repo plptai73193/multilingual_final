@@ -46,30 +46,35 @@ class ProductService {
       $endpoint = "products/{$product_id}";
       $cf_params = [
          "shop_no" => $shop_no,
+         "embed" => "memos,hits,seo,tags,options,discountprice,decorationimages,benefits,additionalimages",
       ];
       $cafe24_token = Cafe24::getCafe24Token();
       $access_token = $cafe24_token['access_token'];
       $api_res = Cafe24Api::get($cafe_mall_id, $access_token, $endpoint, $cf_params);
       $res_data = $api_res['data'];
-      if (!empty($res_data)) {
-         $product = $res_data->product;
-         $result_data = [
-            "shop_no" => $shop_no,
-            "product_no" => $product->product_no,
-            "product_name" => $product->product_name, 
-            "simple_description" => $product->simple_description, 
-            "description" => $product->description,
-            "mobile_description" => $product->mobile_description,
-            "translated_description" => $product->translated_description,
-            "product_tag" => $product->product_tag,
-            "internal_product_name" => $product->internal_product_name,
-            "model_name" => $product->model_name,
-            "supply_price" => $product->supply_price,
-            "translated_additional_description" => $product->translated_additional_description,
-         ];
-         $result['success'] = true;
-         $result['data'] = $result_data;
-         $result['msg'] = "Success";
+      if ($api_res['success'] == true) {
+         if (!empty($res_data)) {
+            $product = $res_data->product;
+            // $result_data = [
+            //    "shop_no" => $shop_no,
+            //    "product_no" => $product->product_no,
+            //    "product_name" => $product->product_name, 
+            //    "simple_description" => $product->simple_description, 
+            //    "description" => $product->description,
+            //    "mobile_description" => $product->mobile_description,
+            //    "translated_description" => $product->translated_description,
+            //    "product_tag" => $product->product_tag,
+            //    "internal_product_name" => $product->internal_product_name,
+            //    "model_name" => $product->model_name,
+            //    "supply_price" => $product->supply_price,
+            //    "translated_additional_description" => $product->translated_additional_description,
+            // ];
+            $result['success'] = true;
+            $result['data'] = $product;
+            $result['msg'] = "Success";
+         } else {
+            $result['msg'] = "No data found!";
+         }
       } else {
          $result['msg'] = $api_res["msg"];
       }
@@ -108,7 +113,8 @@ class ProductService {
          "shop_no" => $shop_no,
          "product_no" => $product_no,
          "display" => "T",
-         "limit" => 100
+         "limit" => 100,
+         "embed" => "discountprice,decorationimages,benefits,options,variants,custom_product_code,custom_variant_code,additionalimages"
       ];
       $access_token = $this->access_token; 
       $api_res = Cafe24Api::get($cafe_mall_id, $access_token, $endpoint, $cf_params);
@@ -117,21 +123,23 @@ class ProductService {
          $res_data = $api_res['data'];
          $products = $res_data->products;
          if (!empty($products)) {
-            foreach ($products as $product) {
-               $result_data["products"][] = [
-                  "shop_no" => $shop_no,
-                  "product_no" => $product->product_no,
-                  "product_code" => $product->product_code,
-                  "list_image" => $product->list_image,
-                  "product_name" => $product->product_name,
-                  "price" => $product->price,
-               ];
-            }
-            $result['data'] = $result_data;
+            // foreach ($products as $product) {
+            //    $result_data["products"][] = [
+            //       "shop_no" => $shop_no,
+            //       "product_no" => $product->product_no,
+            //       "product_code" => $product->product_code,
+            //       "list_image" => $product->list_image,
+            //       "product_name" => $product->product_name,
+            //       "price" => $product->price,
+            //    ];
+            // }
+            $result['data'] = $products;
             $result['msg'] = "Success";
          } else {
             $result['msg'] = "No data found!";
          }
+      } else {
+         $result['msg'] = $api_res['msg'];
       }
       return $result;
    }
