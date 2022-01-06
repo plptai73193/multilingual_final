@@ -46,7 +46,7 @@ class ProductService {
       $endpoint = "products/{$product_id}";
       $cf_params = [
          "shop_no" => $shop_no,
-         "embed" => "memos,hits,seo,tags,options,discountprice,decorationimages,benefits,additionalimages",
+         "embed" => "variants,memos,hits,seo,tags,options,discountprice,decorationimages,benefits,additionalimages",
       ];
       $cafe24_token = Cafe24::getCafe24Token();
       $access_token = $cafe24_token['access_token'];
