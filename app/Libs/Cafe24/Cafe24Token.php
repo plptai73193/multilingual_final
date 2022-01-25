@@ -26,6 +26,7 @@ class Cafe24Token {
             $scope .= "{$default_scope}";
             $url_get_code = "https://{$mall_id}.cafe24api.com/api/v2/oauth/authorize?response_type=code&client_id={$client_id}&state={$state}&redirect_uri={$redirect_uri}&scope={$scope}";
             header("Location: {$url_get_code}");
+            exit;
         }
     }
     
