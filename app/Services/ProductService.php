@@ -117,7 +117,27 @@ class ProductService {
          "embed" => "discountprice,decorationimages,benefits,options,variants,custom_product_code,custom_variant_code,additionalimages"
       ];
       $access_token = $this->access_token; 
-      $api_res = Cafe24Api::get($cafe_mall_id, $access_token, $endpoint, $cf_params);
+      if ($cafe_mall_id == 'appsource' && $shop_no == 'test') {
+         $api_res = [];
+         $resultJson = [];
+         $api_res['success'] = true;
+         $api_res['data'] = new \stdClass();
+         $listId = explode(',', $cf_params['product_no']);
+         $path = storage_path() . "/app/products.json";
+         $jsonProducts = json_decode(file_get_contents($path), true);
+         foreach ($jsonProducts['products'] as $key => $value) {
+            if (in_array($value['product_no'], $listId)) {
+               array_push($resultJson, $value);
+            }
+         }
+         if ($cf_params['product_no'] == 'all') {
+            $api_res['data']->products = $jsonProducts['products'];
+         } else {
+            $api_res['data']->products = $resultJson;
+         }
+      } else {
+         $api_res = Cafe24Api::get($cafe_mall_id, $access_token, $endpoint, $cf_params);
+      }
       if($api_res['success'] == true){
          $result['success'] = true;
          $res_data = $api_res['data'];
